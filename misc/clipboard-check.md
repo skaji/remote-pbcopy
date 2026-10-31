@@ -7,7 +7,7 @@ terminal/multiplexer.
 ## Running the checks
 
 On a Mac with Python 3.8+, Perl, Go, tmux, and GNU screen installed, open a normal
-local tab in each terminal. Start outside tmux, screen, or Herdr. From the
+local tab in each terminal. Start outside tmux, screen, or Herdr TUI. From the
 repository directory, run one command in each app, **one app at a time**:
 
 ```sh
@@ -19,6 +19,9 @@ python3 misc/check-clipboard.py Rex
 
 # In Ghostty:
 python3 misc/check-clipboard.py Ghostty
+
+# In Herdr App (a This computer space):
+python3 misc/check-clipboard.py HerdrApp
 ```
 
 Keep that app and tab in front until the command prints the summary and returns
@@ -64,19 +67,26 @@ The terminal label is just a label; it does not launch or detect the named app.
 
 ## Results from 2026-10-31
 
-On macOS, with tmux 3.8 and the bundled GNU screen 4.00.03, all three
-implementations produced the same results:
+On macOS, with tmux 3.8, the bundled GNU screen 4.00.03, and Herdr TUI 0.9.5,
+all three implementations produced the same results. Herdr App was version
+0.1.10 with Herdr Core 0.1.15. Herdr App and Herdr TUI are separate programs:
+the former is an outer terminal app here, the latter an inner multiplexer.
 
-| Environment | iTerm2 | Rex Beta | Ghostty |
-| --- | --- | --- | --- |
-| Plain tab | PASS | PASS | PASS |
-| tmux, empty config | FAIL | FAIL | FAIL |
-| tmux, `allow-passthrough on` | PASS | PASS | PASS |
-| GNU screen | PASS | PASS | PASS |
+| Environment | iTerm2 | Rex Beta | Ghostty | Herdr App |
+| --- | --- | --- | --- | --- |
+| Plain tab | PASS | PASS | PASS | PASS |
+| tmux, empty config | FAIL | FAIL | FAIL | FAIL |
+| tmux, `allow-passthrough on` | PASS | PASS | PASS | PASS |
+| GNU screen | PASS | PASS | PASS | PASS |
+| Herdr TUI | PASS | PASS | PASS | Not tested |
 
-Both `OSC 52 ;; ...` and `OSC 52 ;c; ...` worked in all three terminals. The code
-uses `c` to explicitly select the clipboard; it was not required to make Rex or
-Ghostty work.
+Both `OSC 52 ;; ...` and `OSC 52 ;c; ...` worked in all four outer terminals.
+The code uses `c` to explicitly select the clipboard; it was not required to
+make Rex or Ghostty work.
+
+Herdr TUI needed no additional clipboard configuration in those separate manual
+checks. The helper above currently automates only the plain, tmux, and screen
+rows. The Herdr App → Herdr TUI combination was intentionally not tested.
 
 ## Lessons from the investigation
 

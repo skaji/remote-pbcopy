@@ -7,14 +7,14 @@ Fortunately, with the OSC 52 escape sequence,
 we can access the local machine's clipboard from a remote machine.
 
 I prepared a simple tool that works like `pbcopy` for remote machines.
-It works with [iTerm2](https://iterm2.com/), [Ghostty](https://ghostty.org/), and
-[Rex](https://www.superlogical.com/rex/docs/installation), including sessions inside
-[tmux](https://github.com/tmux/tmux/wiki), [GNU screen](https://www.gnu.org/software/screen/),
-and [herdr](https://herdr.dev/).
+It works with [iTerm2](https://iterm2.com/), [Ghostty](https://ghostty.org/),
+[Rex](https://www.superlogical.com/rex/docs/installation), and [Herdr](https://herdr.dev/),
+including sessions inside [tmux](https://github.com/tmux/tmux/wiki) and
+[GNU screen](https://www.gnu.org/software/screen/).
 
 ## Install
 
-1. Use iTerm2, Ghostty, or Rex.
+1. Use iTerm2, Ghostty, Rex, or Herdr.
 2. Copy a preferred `pbcopy` to a directory where `$PATH` is set.
 
     ```
