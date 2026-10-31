@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/base64"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"os/exec"
 	"strings"
@@ -72,13 +72,13 @@ func run() error {
 	var b []byte
 	var err error
 	if len(os.Args) == 1 {
-		b, err = ioutil.ReadAll(os.Stdin)
+		b, err = io.ReadAll(os.Stdin)
 	} else {
 		if os.Args[1] == "-h" || os.Args[1] == "--help" {
 			fmt.Print("Usage:\n  pbcopy FILE\n  some-command | pbcopy\n")
 			os.Exit(1)
 		}
-		b, err = ioutil.ReadFile(os.Args[1])
+		b, err = os.ReadFile(os.Args[1])
 	}
 	if err != nil {
 		return err
