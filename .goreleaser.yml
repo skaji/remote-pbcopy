@@ -1,3 +1,5 @@
+version: 2
+
 builds:
   - main: ./cmd/pbcopy
     binary: pbcopy
@@ -9,13 +11,20 @@ builds:
     goarch:
       - amd64
       - arm64
+    ignore:
+      - goos: darwin
+        goarch: amd64
+
 checksum:
   name_template: 'pbcopy-checksums.txt'
+
 archives:
-  - name_template: "pbcopy-{{ .Os }}-{{ .Arch }}"
+  - formats: ["tar.gz"]
+    name_template: "pbcopy-{{- .Os }}-{{- .Arch }}"
+
 changelog:
   sort: asc
   filters:
     exclude:
-      - '^docs:'
-      - '^test:'
+      - "^docs:"
+      - "^test:"
