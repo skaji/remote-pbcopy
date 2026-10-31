@@ -8,18 +8,18 @@ from typing import Callable
 
 
 def normal_esc(b64: str) -> str:
-    return "\x1B]52;;" + b64 + "\x1B\x5C"
+    return "\x1B]52;c;" + b64 + "\x1B\x5C"
 
 
 def tmux_esc(b64: str) -> str:
-    return "\x1BPtmux;\x1B\x1B]52;;" + b64 + "\x1B\x1B\x5C\x5C\x1B\x5C"
+    return "\x1BPtmux;\x1B\x1B]52;c;" + b64 + "\x1B\x1B\x5C\x5C\x1B\x5C"
 
 
 def screen_esc(b64: str) -> str:
     out = []
     for i in range(sys.maxsize):
         begin, end = i * 76, min((i + 1) * 76, len(b64))
-        out.append(("\x1BP\x1B]52;;" if begin == 0 else "\x1B\x5C\x1BP") + b64[begin:end])
+        out.append(("\x1BP\x1B]52;c;" if begin == 0 else "\x1B\x5C\x1BP") + b64[begin:end])
         if end == len(b64):
             break
     out.append("\x07\x1B\x5C")

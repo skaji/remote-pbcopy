@@ -11,11 +11,11 @@ import (
 )
 
 func normalEsc(b64 string) string {
-	return "\x1B]52;;" + b64 + "\x1B\x5C"
+	return "\x1B]52;c;" + b64 + "\x1B\x5C"
 }
 
 func tmuxEsc(b64 string) string {
-	return "\x1BPtmux;\x1B\x1B]52;;" + b64 + "\x1B\x1B\x5C\x5C\x1B\x5C"
+	return "\x1BPtmux;\x1B\x1B]52;c;" + b64 + "\x1B\x1B\x5C\x5C\x1B\x5C"
 }
 
 func screenEsc(b64 string) string {
@@ -26,7 +26,7 @@ func screenEsc(b64 string) string {
 			end = len(b64)
 		}
 		if begin == 0 {
-			out = append(out, "\x1BP\x1B]52;;"+b64[begin:end])
+			out = append(out, "\x1BP\x1B]52;c;"+b64[begin:end])
 		} else {
 			out = append(out, "\x1B\x5C\x1BP"+b64[begin:end])
 		}

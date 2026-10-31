@@ -7,12 +7,12 @@ my $b = "\\"; # 1 backslash, not 2
 
 my $normal = sub {
     my $base64 = shift;
-    print "\e]52;;", $base64, "\e$b";
+    print "\e]52;c;", $base64, "\e$b";
 };
 
 my $tmux = sub {
     my $base64 = shift;
-    print "\ePtmux;\e\e]52;;", $base64, "\e\e$b$b\e$b";
+    print "\ePtmux;\e\e]52;c;", $base64, "\e\e$b$b\e$b";
 };
 
 my $screen = sub {
@@ -23,7 +23,7 @@ my $screen = sub {
         my $chunk = substr $base64, 0, $len, "";
         last if $chunk eq "";
         if ($first) {
-            print "\eP\e]52;;", $chunk;
+            print "\eP\e]52;c;", $chunk;
             undef $first;
         } else {
             print "\e$b\eP", $chunk;
@@ -53,19 +53,3 @@ CHOOSE: {
 }
 
 $print->( encode_base64($input, "") );
-
-__END__
-
-=head1 NAME
-
-pbcopy - remote pbcopy for iTerm2
-
-=head1 AUTHOR
-
-Shoichi Kaji
-
-=head1 LICENSE
-
-MIT
-
-=cut

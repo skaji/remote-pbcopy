@@ -1,3 +1,3 @@
-module github.com/skaji/remote-pbcopy-iterm2
+module github.com/skaji/remote-pbcopy
 
 go 1.27.0
