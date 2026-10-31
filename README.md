@@ -8,7 +8,9 @@ we can access the local machine's clipboard from a remote machine.
 
 I prepared a simple tool that works like `pbcopy` for remote machines.
 It works with [iTerm2](https://iterm2.com/), [Ghostty](https://ghostty.org/), and
-[Rex](https://www.superlogical.com/rex/docs/installation), including sessions inside tmux and GNU screen.
+[Rex](https://www.superlogical.com/rex/docs/installation), including sessions inside
+[tmux](https://github.com/tmux/tmux/wiki), [GNU screen](https://www.gnu.org/software/screen/),
+and [herdr](https://herdr.dev/).
 
 ## Install
 
